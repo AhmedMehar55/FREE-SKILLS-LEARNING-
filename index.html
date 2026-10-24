@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UK Account Giveaway</title>
+    <meta name="description" content="Join UK Account Giveaway, register as a member, and participate in community voting.">
+    <meta name="theme-color" content="#101827">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">🎁</span>
+                <span>UK Account Giveaway</span>
+            </a>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="navigation" id="navigation">
+                <a href="#home">Home</a>
+                <a href="#register">Register</a>
+                <a href="#voting">Voting</a>
+                <a href="#whatsapp">WhatsApp</a>
+                <a href="#winner">Winner</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="container hero-content">
+
+                <div class="hero-text">
+                    <span class="welcome-label">WELCOME TO OUR GIVEAWAY</span>
+
+                    <h1>
+                        UK Account
+                        <span>Giveaway</span>
+                    </h1>
+
+                    <p>
+                        Register as a member, explore the voting list,
+                        and support your favorite participants.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#register" class="btn btn-primary">
+                            Register Now
+                        </a>
+
+                        <a href="#voting" class="btn btn-secondary">
+                            View Voting List
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <div class="gift-icon">🎁</div>
+                    <h2>Community Giveaway</h2>
+
+                    <p>
+                        Join our community and participate in the voting process.
+                    </p>
+
+                    <div class="hero-card-badge">
+                        Registration Open
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Statistics -->
+        <section class="statistics-section">
+            <div class="container statistics-grid">
+
+                <div class="stat-card">
+                    <span class="stat-icon">👥</span>
+                    <h3 id="totalMembers">0</h3>
+                    <p>Total Members</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">🗳️</span>
+                    <h3 id="totalVotes">0</h3>
+                    <p>Total Votes</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">🏆</span>
+                    <h3 id="topVotes">0</h3>
+                    <p>Highest Vote Count</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Registration -->
+        <section class="section registration-section" id="register">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">JOIN OUR COMMUNITY</span>
+                    <h2>Member Registration</h2>
+
+                    <p>
+                        Enter your details to join the public member list.
+                    </p>
+                </div>
+
+                <div class="form-card">
+
+                    <form id="registrationForm">
+
+                        <div class="form-group">
+                            <label for="memberName">Full Name</label>
+
+                            <input
+                                type="text"
+                                id="memberName"
+                                name="name"
+                                placeholder="Enter your full name"
+                                maxlength="80"
+                                autocomplete="name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberPhone">Phone Number</label>
+
+                            <input
+                                type="tel"
+                                id="memberPhone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                maxlength="25"
+                                autocomplete="tel"
+                                required>
+
+                            <small>
+                                Your phone number will not be displayed publicly.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberCity">City</label>
+
+                            <input
+                                type="text"
+                                id="memberCity"
+                                name="city"
+                                placeholder="Enter your city"
+                                maxlength="80"
+                                autocomplete="address-level2"
+                                required>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-full"
+                            id="registerButton">
+                            Complete Registration
+                        </button>
+
+                        <p
+                            id="registrationMessage"
+                            class="form-message"
+                            role="status"
+                            aria-live="polite">
+                        </p>
+
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Voting -->
+        <section class="section voting-section" id="voting">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">PUBLIC VOTING</span>
+                    <h2>Member Voting List</h2>
+
+                    <p>
+                        Search by member number, name, or city.
+                    </p>
+                </div>
+
+
+                <!-- Search -->
+                <div class="search-card">
+
+                    <div class="search-group">
+                        <label for="searchNumber">Member Number</label>
+
+                        <input
+                            type="number"
+                            id="searchNumber"
+                            placeholder="Search by number"
+                            min="1">
+                    </div>
+
+                    <div class="search-group">
+                        <label for="searchName">Member Name</label>
+
+                        <input
+                            type="search"
+                            id="searchName"
+                            placeholder="Search by name">
+                    </div>
+
+                    <div class="search-group">
+                        <label for="searchCity">City</label>
+
+                        <input
+                            type="search"
+                            id="searchCity"
+                            placeholder="Search by city">
+                    </div>
+
+                    <button
+                        type="button"
+                        id="clearSearch"
+                        class="btn btn-secondary">
+                        Clear Search
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="votingMessage"
+                    class="form-message"
+                    role="status"
+                    aria-live="polite">
+                </div>
+
+
+                <!-- Members Table -->
+                <div class="table-wrapper">
+
+                    <table class="members-table">
+
+                        <thead>
+                            <tr>
+                                <th>Member No.</th>
+                                <th>Name</th>
+                                <th>City</th>
+                                <th>Total Votes</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="membersList">
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    Loading members...
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+
+                    <button
+                        type="button"
+                        id="previousPage"
+                        class="btn btn-secondary"
+                        disabled>
+                        Previous
+                    </button>
+
+                    <span id="pageInfo">Page 1</span>
+
+                    <button
+                        type="button"
+                        id="nextPage"
+                        class="btn btn-secondary"
+                        disabled>
+                        Next
+                    </button>
+
+                </div>
+
+                <p class="privacy-note">
+                    🔒 Phone numbers are not shown in the public voting list.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- WhatsApp Channel -->
+        <section class="section whatsapp-section" id="whatsapp">
+            <div class="container">
+
+                <div class="whatsapp-card">
+
+                    <div class="whatsapp-icon">💬</div>
+
+                    <span class="section-label">STAY CONNECTED</span>
+
+                    <h2>Join Our WhatsApp Channel</h2>
+
+                    <p>
+                        Follow our official channel for giveaway announcements,
+                        updates, and important information.
+                    </p>
+
+                    <a
+                        href="https://whatsapp.com/channel/0029VakUOHMEVccRjli02O0R"
+                        id="whatsappChannelLink"
+                        class="btn btn-whatsapp"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Join WhatsApp Channel
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Winner Announcement -->
+        <section class="section winner-section" id="winner">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">WINNER ANNOUNCEMENT</span>
+                    <h2>🏆 Giveaway Winner</h2>
+
+                    <p>
+                        The official winner will be announced here by the administrator.
+                    </p>
+                </div>
+
+                <div class="winner-card" id="winnerCard">
+
+                    <div class="winner-trophy">🏆</div>
+
+                    <h3 id="winnerName">Winner Not Announced Yet</h3>
+
+                    <p id="winnerDetails">
+                        Please check back for the official announcement.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Rules -->
+        <section class="section rules-section" id="rules">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">IMPORTANT INFORMATION</span>
+                    <h2>Giveaway Rules</h2>
+                </div>
+
+                <div class="rules-card">
+                    <ul>
+                        <li>Provide accurate information during registration.</li>
+                        <li>Phone numbers will not appear in the public member list.</li>
+                        <li>Follow the official voting deadline and eligibility rules.</li>
+                        <li>The winner will be announced according to the published rules.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <h2>UK Account Giveaway</h2>
+
+            <p>
+                Thank you for being part of our community.
+            </p>
+
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#register">Register</a>
+                <a href="#voting">Voting</a>
+                <a href="#whatsapp">WhatsApp Channel</a>
+                <a href="admin.html">Admin Panel</a>
+            </div>
+
+            <p class="copyright">
+                &copy; <span id="currentYear">2026</span>
+                UK Account Giveaway. All rights reserved.
+            </p>
+
+        </div>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
